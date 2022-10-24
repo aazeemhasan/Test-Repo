@@ -1,0 +1,14 @@
+---
+- name: copy content
+  copy:
+     content: "Welcome to web apache server with tags"
+     dest: /var/www/html/index.html
+- name: Add FW port
+  firewalld:
+         port: 80/tcp
+         permanent: true
+         state: enabled
+- name: reload fw
+  systemd:
+       name: firewalld
+       state: reloaded
